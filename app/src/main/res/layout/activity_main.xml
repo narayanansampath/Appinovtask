@@ -7,34 +7,21 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="125dp" >
-        <Button
-            android:id="@+id/btnSelectPhoto"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Select Photo" />
-
-    </LinearLayout>
-
-
-    <LinearLayout
+    <Button
+        android:id="@+id/btnSelectPhoto"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="125dp" >
+        android:layout_height="wrap_content"
+        android:text="Select Photo"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="28dp" />
 
-        <ImageView
-            android:id="@+id/viewImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/camera" />
-
-    </LinearLayout>
-
+    <ImageView
+        android:id="@+id/viewImage"
+        android:layout_width="203dp"
+        android:layout_height="151dp"
+        android:src="@drawable/camera"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="90dp" />
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"

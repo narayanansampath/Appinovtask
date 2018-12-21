@@ -95,16 +95,8 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else if (options[item].equals("Choose from Gallery"))
                 {
-//                    Intent intent = new Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-//                    intent.setType("image/*");
-//                    startActivityForResult(Intent.createChooser(intent, "Select File"),2);
-
                     Intent intent = new   Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                     startActivityForResult(intent, 2);
-//
-//                    Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
-//                    photoPickerIntent.setType("image/*");
-//                    startActivityForResult(photoPickerIntent, 2);
 
                 } else if (options[item].equals("Cancel")) {
                     dialog.dismiss();
@@ -159,15 +151,7 @@ public class MainActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
             } else if (requestCode == 2) {
-//                Uri selectedImageUri = data.getData();
-//                String p=selectedImageUri.getPath();
-//
-//                String tempPath = data.getDataString();
-//                Log.i("path of image from gallery......******************.........", p);
-//                Bitmap bitmap;
-//                BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
-//                bitmap = BitmapFactory.decodeFile(tempPath, bitmapOptions);
-//                viewImage.setImageBitmap(bitmap);
+
 
                 Uri selectedImage = data.getData();
                 String[] filePath = { MediaStore.Images.Media.DATA };
