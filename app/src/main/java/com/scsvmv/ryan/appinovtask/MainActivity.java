@@ -14,8 +14,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.os.Bundle;
-import android.app.Activity;
+
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
