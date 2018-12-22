@@ -52,7 +52,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
                 Location loc = getLastBestLocation();
                 double loc_lat = loc.getLatitude();
                 double loc_lon = loc.getLongitude();
-                String uri = "http://maps.google.com/maps?saddr=" +loc_lat+","+loc_lon;
+                String uri = "http://maps.google.com/maps?daddr=" +loc_lat+","+loc_lon;
                 Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
                 sharingIntent.setType("text/plain");
                 String ShareSub = "Here is my location";
