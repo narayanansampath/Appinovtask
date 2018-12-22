@@ -88,5 +88,6 @@ public class MainActivity extends AppCompatActivity {
     private void findViews() {
         fragmentContainer = findViewById(R.id.fragmentContainer);
         navigation = findViewById(R.id.navigation);
+
     }
 }

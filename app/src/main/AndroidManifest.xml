@@ -12,6 +12,7 @@
     <uses-feature android:glEsVersion="0x00020000" android:required="true" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
@@ -51,6 +52,11 @@
         <activity
             android:name=".MapsFragment"
             android:label="@string/title_activity_maps_fragment"></activity>
+        <activity
+            android:name=".VideoFragment"
+            android:resizeableActivity="true"
+            android:supportsPictureInPicture="true"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"></activity>
     </application>
 
 </manifest>
