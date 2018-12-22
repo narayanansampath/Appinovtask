@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
@@ -42,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
    // private Fragment activeFragment;
     private Fragment cameraFragment;
     private Fragment videoFragment;
+    private Fragment mapsFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
         fragmentManager = getSupportFragmentManager();
         cameraFragment = new CameraFragment();
         videoFragment = new VideoFragment();
+        mapsFragment = new MapsFragment();
 
         setActiveFragment(cameraFragment,"camera module");
         //setActiveFragment(videoFragment, "video module");
@@ -67,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
                     setActiveFragment(cameraFragment,"camera module");
                     return true;
                 case R.id.location:
+                    setActiveFragment(mapsFragment, "maps fragment");
                     return true;
                 case R.id.video:
                     setActiveFragment(videoFragment,"video module");

@@ -61,7 +61,6 @@ public class VideoFragment extends Fragment {
             }
         });
 
-
         return rootView;
     }
 }
