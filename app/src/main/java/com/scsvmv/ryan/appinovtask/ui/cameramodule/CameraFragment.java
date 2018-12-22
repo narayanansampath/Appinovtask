@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -19,7 +20,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.scsvmv.ryan.appinovtask.R;
 
 import java.io.IOException;
@@ -116,17 +116,28 @@ public class CameraFragment extends Fragment {
     }
 
     public void chooseImageFromGallery() {
+
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.setType("image/*");
+        intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
         startActivityForResult(intent, CHOOSE_FROM_GALLERY);
     }
 
     private void handleResultChooseFromGallery(Intent data) {
-        Uri selectedImage = data.getData();
         try {
-            Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), selectedImage);
-            addImageToView(bitmap);
-        } catch (IOException e) {
+            if (data.getClipData() != null) {
+                int count = data.getClipData().getItemCount();
+                for (int i = 0; i < count; i++) {
+                    Uri imageUri = data.getClipData().getItemAt(i).getUri();
+                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), imageUri);
+                    addImageToView(bitmap);
+                }
+            } else if (data.getData() != null) {
+                Uri imageUri = data.getData();
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), imageUri);
+                addImageToView(bitmap);
+            }
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

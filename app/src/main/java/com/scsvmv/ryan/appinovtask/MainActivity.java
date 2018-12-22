@@ -37,9 +37,9 @@ import java.io.OutputStream;
 public class MainActivity extends AppCompatActivity {
 
     private FrameLayout fragmentContainer;
-
+    private BottomNavigationView navigation;
     private FragmentManager fragmentManager;
-    private Fragment activeFragment;
+   // private Fragment activeFragment;
     private Fragment cameraFragment;
     private Fragment videoFragment;
 
@@ -48,10 +48,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         findViews();
-
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         fragmentManager = getSupportFragmentManager();
         cameraFragment = new CameraFragment();
         videoFragment = new VideoFragment();
+
         setActiveFragment(cameraFragment,"camera module");
         //setActiveFragment(videoFragment, "video module");
     }
@@ -76,10 +77,12 @@ public class MainActivity extends AppCompatActivity {
     };
 
     private void setActiveFragment(Fragment fragment, String fragmentName) {
+
         fragmentManager.beginTransaction().replace(R.id.fragmentContainer, fragment, fragmentName).commit();
     }
 
     private void findViews() {
         fragmentContainer = findViewById(R.id.fragmentContainer);
+        navigation = findViewById(R.id.navigation);
     }
 }

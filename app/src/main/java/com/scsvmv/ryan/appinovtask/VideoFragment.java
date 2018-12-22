@@ -48,8 +48,8 @@ public class VideoFragment extends Fragment {
             public void onInitializationSuccess(Provider arg0, YouTubePlayer youTubePlayer, boolean b) {
                 if (!b) {
                     YPlayer = youTubePlayer;
-                    YPlayer.setFullscreen(true);
-                    YPlayer.loadVideo("2zNSgSzhBfM");
+                    YPlayer.setFullscreen(false);
+                    YPlayer.loadVideo("KYxY8dMnFDM");
                     YPlayer.play();
                 }
             }
@@ -60,6 +60,7 @@ public class VideoFragment extends Fragment {
 
             }
         });
+
 
         return rootView;
     }
