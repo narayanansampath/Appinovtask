@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     private FragmentManager fragmentManager;
     private Fragment activeFragment;
     private Fragment cameraFragment;
+    private Fragment videoFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +51,9 @@ public class MainActivity extends AppCompatActivity {
 
         fragmentManager = getSupportFragmentManager();
         cameraFragment = new CameraFragment();
-        setActiveFragment(cameraFragment);
+        videoFragment = new VideoFragment();
+        setActiveFragment(cameraFragment,"camera module");
+        //setActiveFragment(videoFragment, "video module");
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -60,20 +63,20 @@ public class MainActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.camera:
-                    setActiveFragment(cameraFragment);
+                    setActiveFragment(cameraFragment,"camera module");
                     return true;
                 case R.id.location:
                     return true;
                 case R.id.video:
+                    setActiveFragment(videoFragment,"video module");
                     return true;
             }
             return false;
         }
     };
 
-    private void setActiveFragment(Fragment fragment) {
-        activeFragment = fragment;
-        fragmentManager.beginTransaction().add(R.id.fragmentContainer, cameraFragment, "Camera Module").commit();
+    private void setActiveFragment(Fragment fragment, String fragmentName) {
+        fragmentManager.beginTransaction().replace(R.id.fragmentContainer, fragment, fragmentName).commit();
     }
 
     private void findViews() {
