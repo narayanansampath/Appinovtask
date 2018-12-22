@@ -48,12 +48,11 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
-
         <activity
-            android:name=".MapsFragment"
+            android:name=".ui.mapsmodule.MapsFragment"
             android:label="@string/title_activity_maps_fragment"></activity>
         <activity
-            android:name=".VideoFragment"
+            android:name=".ui.videomodule.VideoFragment"
             android:resizeableActivity="true"
             android:supportsPictureInPicture="true"
             android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"></activity>
