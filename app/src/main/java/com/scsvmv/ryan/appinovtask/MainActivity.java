@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.MapFragment;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
@@ -32,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
     private FrameLayout fragmentContainer;
     private ViewPager viewPager;
-
+    MapFragment mapFragment;
     private BottomNavigationView navigation;
     private FragmentManager fragmentManager;
    // private Fragment activeFragment;
@@ -47,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         findViews();
         requestStoragePermission();
+        mapFragment = new MapFragment();
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         fragmentManager = getSupportFragmentManager();
 

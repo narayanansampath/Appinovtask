@@ -13,7 +13,7 @@
         android:id="@+id/fabmap"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="right|bottom"
+        android:layout_gravity="left|top"
         android:layout_marginBottom="75dp"
         android:padding="10dp"
         android:paddingRight="10dp"
