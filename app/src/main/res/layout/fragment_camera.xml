@@ -9,7 +9,7 @@
         android:id="@+id/cameraFab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="right|bottom"
+        android:layout_marginBottom="75dp"
         android:clickable="true"
         android:src="@drawable/ic_camera_alt_white_24dp"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -7,7 +7,9 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 
 import android.support.v4.app.FragmentManager;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 import android.widget.Toast;
@@ -19,6 +21,7 @@ import com.karumi.dexter.listener.DexterError;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.PermissionRequestErrorListener;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
+import com.scsvmv.ryan.appinovtask.ui.ViewPagerAdapter;
 import com.scsvmv.ryan.appinovtask.ui.cameramodule.CameraFragment;
 import com.scsvmv.ryan.appinovtask.ui.mapsmodule.MapsFragment;
 import com.scsvmv.ryan.appinovtask.ui.videomodule.VideoFragment;
@@ -28,13 +31,16 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private FrameLayout fragmentContainer;
+    private ViewPager viewPager;
+
     private BottomNavigationView navigation;
     private FragmentManager fragmentManager;
    // private Fragment activeFragment;
     private Fragment cameraFragment;
     private Fragment videoFragment;
     private Fragment mapsFragment;
-
+    MenuItem prevMenuItem;
+    //Fragment active = cameraFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,12 +49,54 @@ public class MainActivity extends AppCompatActivity {
         requestStoragePermission();
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         fragmentManager = getSupportFragmentManager();
-        cameraFragment = new CameraFragment();
-        videoFragment = new VideoFragment();
-        mapsFragment = new MapsFragment();
 
-        setActiveFragment(cameraFragment,"camera module");
+        viewPager = (ViewPager) findViewById(R.id.viewpager);
+
+
+        //setActiveFragment(videoFragment,"video");
+        //setActiveFragment(mapsFragment,"maps module");
+        //setActiveFragment(cameraFragment,"camera module");
+
         //setActiveFragment(videoFragment, "video module");
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                if (prevMenuItem != null) {
+                    prevMenuItem.setChecked(false);
+                }
+                else
+                {
+                    navigation.getMenu().getItem(0).setChecked(false);
+                }
+                Log.d("page", "onPageSelected: "+position);
+                navigation.getMenu().getItem(position).setChecked(true);
+                prevMenuItem = navigation.getMenu().getItem(position);
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
+       /*  //Disable ViewPager Swipe
+       viewPager.setOnTouchListener(new View.OnTouchListener()
+        {
+            @Override
+            public boolean onTouch(View v, MotionEvent event)
+            {
+                return true;
+            }
+        });
+        */
+
+        setupViewPager(viewPager);
     }
     private void requestStoragePermission() {
         Dexter.withActivity(this)
@@ -86,20 +134,25 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            //Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.container);
             switch (item.getItemId()) {
                 case R.id.camera:
-                    setActiveFragment(cameraFragment,"camera module");
-                    return true;
+                    viewPager.setCurrentItem(0);
+                    //setActiveFragment(cameraFragment,"camera module");
+                    break;
                 case R.id.location:
-                    setActiveFragment(mapsFragment, "maps fragment");
-                    return true;
+                    viewPager.setCurrentItem(1);
+                    //setActiveFragment(mapsFragment, "maps fragment");
+                    break;
                 case R.id.video:
-                    setActiveFragment(videoFragment,"video module");
-                    return true;
+                    viewPager.setCurrentItem(2);
+                    //setActiveFragment(videoFragment, "video module");
+                    break;
             }
             return false;
         }
     };
+
 
     private void setActiveFragment(Fragment fragment, String fragmentName) {
 
@@ -110,5 +163,16 @@ public class MainActivity extends AppCompatActivity {
         fragmentContainer = findViewById(R.id.fragmentContainer);
         navigation = findViewById(R.id.navigation);
 
+    }
+
+    private void setupViewPager(ViewPager viewPager) {
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        cameraFragment = new CameraFragment();
+        mapsFragment = new MapsFragment();
+        videoFragment = new VideoFragment();
+        adapter.addFragment(cameraFragment);
+        adapter.addFragment(mapsFragment);
+        adapter.addFragment(videoFragment);
+        viewPager.setAdapter(adapter);
     }
 }
