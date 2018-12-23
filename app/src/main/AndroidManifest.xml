@@ -30,7 +30,9 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:supportsPictureInPicture="true"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -48,14 +50,7 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
-        <activity
-            android:name=".ui.mapsmodule.MapsFragment"
-            android:label="@string/title_activity_maps_fragment"></activity>
-        <activity
-            android:name=".ui.videomodule.VideoFragment"
-            android:resizeableActivity="true"
-            android:supportsPictureInPicture="true"
-            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"></activity>
+
     </application>
 
 </manifest>

@@ -25,7 +25,7 @@ public class VideoFragment extends Fragment {
     private FragmentActivity myContext;
 
     private YouTubePlayer YPlayer;
-    //FloatingActionButton fab;
+    FloatingActionButton fab;
     private FrameLayout mFramePlayer;
     private static final String YoutubeDeveloperKey = "AIzaSyCJ-8OibFGOGnTAYzI3ktqTm0_WJ9119jg";
     private static final int RECOVERY_DIALOG_REQUEST = 1;
@@ -46,7 +46,7 @@ public class VideoFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_video, container, false);
 
         findViews(rootView);
-        /*fab.setOnClickListener(new View.OnClickListener() {
+        fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (android.os.Build.VERSION.SDK_INT >= 26) {
@@ -60,6 +60,7 @@ public class VideoFragment extends Fragment {
                                         .build();
 
                         getActivity().enterPictureInPictureMode(mParams);
+
                     } catch (IllegalStateException e) {
                         e.printStackTrace();
                     }
@@ -67,7 +68,7 @@ public class VideoFragment extends Fragment {
                     Toast.makeText(getActivity(), "API 26 needed to perform PiP", Toast.LENGTH_SHORT).show();
                 }
             }
-        });*/
+        });
         YouTubePlayerSupportFragment youTubePlayerFragment = YouTubePlayerSupportFragment.newInstance();
         FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
         transaction.add(R.id.youtube_fragment, youTubePlayerFragment).commit();
@@ -93,24 +94,24 @@ public class VideoFragment extends Fragment {
         });
         return rootView;
     }
-        /*@Override
+        @Override
         public void onPictureInPictureModeChanged( boolean isInPictureInPictureMode){
             super.onPictureInPictureModeChanged(isInPictureInPictureMode);
 
             if (!isInPictureInPictureMode) {
                 // Restore your (player) UI
-                fab.setVisibility(View.VISIBLE);
-//            getApplication().startActivity(new Intent(this, getClass())
-//                    .addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT));
+                fab.show();
+
             } else {
                 // Hide all UI controls except video
-                fab.setVisibility(View.GONE);
+                fab.hide();
             }
 
-        }*/
+        }
+
 
     private void findViews(View container) {
-        //this.fab = container.findViewById(R.id.fabpip);
+        this.fab = container.findViewById(R.id.fabpip);
         this.mFramePlayer = container.findViewById(R.id.youtube_fragment);
     }
 }
